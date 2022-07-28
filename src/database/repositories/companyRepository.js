@@ -1,3 +1,4 @@
+const db = require("../index.js");
 class CompanyRepository {
     async findAll() {
         const companies = [
