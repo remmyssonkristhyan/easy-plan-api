@@ -3,36 +3,50 @@ class CompanyRepository {
     async findAll() {
         const conn = await db.connectToMysql();
         const query = "SELECT * FROM company";
-        const companies = await conn.query(query);
-        // const companies = [
-        //     {
-        //         companyName: 'Microsoft',
-        //         entrepreneurName: 'Bill Gates',
-        //         document: '12345678910',
-        //         businessDescription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam erat.',
-        //         businessSegment: 'Tecnologia',
-        //         customers: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam erat.',
-        //         customerWhere: 'outros países',
-        //         customerFrequency: 'sempre',
-        //         customerFactor: 'marca',
-        //         competitors: 'Apple, Google',
-        //         suppliers: 'Chineses',
-        //         productDescription: 'rWindows: o sistema operacional nº 1 em travamentos no mundo',
-        //         businessDifferential: 'nxjanxjnskxnasjxnknx',
-        //         mainAdvertising: 'shxabsxiuasbxiusabxuiabsi',
-        //         averagePrice: 500.00,
-        //         salesPeriod: 480000.00,
-        //         salesTotal: 10000000000.00,
-        //         initialFunding: 4545418485.00,
-        //         hasCapital: true,
-        //         fundingWay: 'outros',
-        //         averageCost: 30.00,
-        //         collaboratorCost: 5000.00,
-        //         rentCost: 0,
-        //         otherCosts: 1212222.00
-        //     }
-        // ];
+        const [companies] = await conn.query(query);
+
         return companies;
+    }
+
+    async findById(id) {
+        const conn = await db.connectToMysql();
+        const query = "SELECT * FROM company WHERE id = ?";
+        const [company] = await conn.query(query, [id]);
+
+        return company;
+    }
+
+    async create(companyData) {
+        const conn = await db.connectToMysql();
+        const query = "INSERT INTO company (companyName, entrepreneurName, document, businessDescription, businessSegment, customers, customerWhere, customerFrequency, customerFactor, competitors, suppliers, productDescription, businessDifferential, mainAdvertising, averagePrice, salesPeriod, salesTotal, initialFunding, hasCapital, fundingWay, averageCost, collaboratorCost, rentCost, otherCosts) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        const company = await conn.query(query, [
+            companyData.companyName, 
+            companyData.entrepreneurName,
+            companyData.document,
+            companyData.businessDescription,
+            companyData.businessSegment,
+            companyData.customers,
+            companyData.customerWhere,
+            companyData.customerFrequency,
+            companyData.customerFactor,
+            companyData.competitors,
+            companyData.suppliers,
+            companyData.productDescription,
+            companyData.businessDifferential,
+            companyData.mainAdvertising,
+            companyData.averagePrice,
+            companyData.salesPeriod,
+            companyData.salesTotal,
+            companyData.initialFunding,
+            companyData.hasCapital,
+            companyData.fundingWay,
+            companyData.averageCost,
+            companyData.collaboratorCost,
+            companyData.rentCost,
+            companyData.otherCosts
+        ]);
+
+        return company;
     }
 }
 
