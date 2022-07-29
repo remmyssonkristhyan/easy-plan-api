@@ -17,6 +17,14 @@ class CompanyService {
     async createCompany(company){
         return this.repository.create(company);
     };
+
+    async updateCompany(id, company){
+        return this.repository.update(id, company);
+    };
+
+    async deleteCompany(id){
+        return this.repository.delete(id);
+    };
 };
 
 module.exports = CompanyService;
