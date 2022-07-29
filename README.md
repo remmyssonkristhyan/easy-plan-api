@@ -1,4 +1,4 @@
-# easy-plan-web
+# easy-plan-api
  Lado Back-End (API) do projeto EasyPlan, projeto desenvolvido para o hackaton TechAcademy da StartSe em apenas uma semana.
 
 ![Easy Plan Logo](https://cdn.discordapp.com/attachments/1000546459361484920/1001710515292209252/logo-horizontal.png)
